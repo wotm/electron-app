@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Calculatrice</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+  </head>
+  <body>
+      <div class="container">
+        <div class="row">
+          <input class="col text-right" type="text" id="result" value="" readonly="">
+        </div>
+        <div class="row">
+          <button class="col">7</button>
+          <button class="col">8</button>
+          <button class="col">9</button>
+          <button class="col">/</button>
+        </div>
+
+        <div class="row">
+          <button class="col">4</button>
+          <button class="col">5</button>
+          <button class="col">6</button>
+          <button class="col">*</button>
+        </div>
+
+        <div class="row">
+          <button class="col">1</button>
+          <button class="col">2</button>
+          <button class="col">3</button>
+          <button class="col">-</button>
+        </div>
+
+        <div class="row">
+          <button class="col">0</button>
+          <button class="col">+</button>
+          <button class="col">=</button>
+          <button class="col">CE</button>
+        </div>
+    </div>
+
+
+    <script>
+      if (typeof module === 'object') { window.module = module; module = undefined;}
+    </script>
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script>if (window.module) module = window.module;</script>
+
+  <!-- CALCULATRICE -->
+    <script>
+      var input = "";
+      var result = "";
+      var calcul = "";  
+
+      $("button").click(function() {
+        input = $(this).html();
+
+        if (input == "=") {
+          result = eval(calcul);
+          input = "";
+          calcul = "";
+        }
+        else if (input == "CE") {
+          input = "";
+          result = "";
+          calcul = "";
+          $("#result").val("0");
+        }
+        else {
+          alert("calcul avant affectation = " +calcul);
+          calcul += input;
+          alert("calcul = " +calcul);
+          $("#result").val(calcul) += $("#result").val(calcul);
+        }
+
+        $("#result").val(result);
+      });
+  
+      // You can also require other files to run in this process
+      require('./renderer.js')
+    </script>
+
+  </body>
+</html>
